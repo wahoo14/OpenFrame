@@ -1,0 +1,469 @@
+Screen:
+    ScreenManager:
+        SplashScreen:
+            name:"splash"
+            id:"splash"
+        FolderSelectScreen:
+            name:"folderSelect"
+        AboutScreen:
+            name:"about"
+        DriveSelectScreen:
+            name:"driveSelect"
+        DisplayScreen:
+            name:"display"
+        AdditionalOptionsScreen:
+            name:"additionalOptions"
+        SleepTimeSelectScreen:
+            name:"sleepTimeSelect"
+
+<SplashScreen>
+    GridLayout:
+        cols:1
+        Label:
+            text:""
+        Label:
+            text:"Welcome to OpenFrame"
+            text_size:self.size
+            font_size:40
+            valign:"bottom"
+            halign:"center"
+        Label:
+            text:"Enjoy your photo collection through a customizable, open-source digital picture frame."
+            text_size:self.size
+            valign:"top"
+            halign:"center"
+        GridLayout:
+            cols:2
+            AnchorLayout:
+                anchor_x:"left"
+                anchor_y:"bottom"
+                padding: [10,10,10,10]
+                Button:
+                    id:about
+                    text:"About"
+                    text_size: self.size     
+                    halign: 'center'
+                    valign: 'middle'
+                    width:120
+                    height:30
+                    size_hint_x:None
+                    size_hint_y:None
+                    on_press: 
+                        root.manager.current="about"
+                        root.manager.transition.direction="right"
+            AnchorLayout:
+                anchor_x:"right"
+                anchor_y:"bottom"
+                padding: [10,10,10,10]
+                Button:
+                    id:continue
+                    text:"Continue"
+                    text_size: self.size     
+                    halign: 'center'
+                    valign: 'middle'
+                    width:120
+                    height:30
+                    size_hint_x:None
+                    size_hint_y:None
+                    on_press: 
+                        root.manager.current="driveSelect"
+                        root.manager.transition.direction="left"
+
+<AboutScreen>
+    GridLayout:
+        cols:1
+        Label:
+            text: "About OpenFrame"
+            text_size:self.size
+            font_size:40
+            valign:"bottom"
+            halign:"center"
+        Label:
+            text: "OpenFrame is an open-source digital picture frame made so that anyone can enjoy the library of photos they've taken.  The code repository is available online at https://github.com/wahoo14/OpenFrame.  This application supports .PNG, .JPEG, and .JPG photos."
+            text_size: 450, None
+            valign:"top"
+            halign:"center"
+        GridLayout:
+            cols:2
+            AnchorLayout:
+                anchor_x:"left"
+                anchor_y:"bottom"
+                padding: [10,10,10,10]
+                Button:
+                    id:back
+                    text:"Back"
+                    text_size: self.size     
+                    halign: 'center'
+                    valign: 'middle'
+                    width:120
+                    height:30
+                    size_hint_x:None
+                    size_hint_y:None
+                    on_press: 
+                        root.manager.current="splash"
+                        root.manager.transition.direction="left"
+
+<DriveSelectScreen>
+    GridLayout:
+        cols:1
+        Label:
+            text: "Select an Available Drive"
+            text_size:self.size
+            font_size:40
+            valign:"middle"
+            halign:"center"       
+        GridLayout:
+            cols:1
+            id: driveLayout
+            padding: [100,0]
+
+
+        GridLayout:
+            cols:2
+            AnchorLayout:
+                anchor_x:"left"
+                anchor_y:"bottom"
+                padding: [10,10,10,10]
+                Button:
+                    id:driveBack
+                    text:"Back"
+                    text_size: self.size     
+                    halign: 'center'
+                    valign: 'middle'
+                    width:120
+                    height:30
+                    size_hint_x:None
+                    size_hint_y:None
+                    on_press: 
+                        root.manager.current="splash"
+                        root.manager.transition.direction="right"
+
+<FolderSelectScreen>
+    GridLayout:
+        cols:1
+        Label:
+            text: "Select a Folder"
+            text_size:self.size
+            font_size:40
+            valign:"bottom"
+            halign:"center"
+        GridLayout:
+            cols:2
+            GridLayout:
+                cols:1
+                Label:
+                    text: "Selected Photos Folder:"
+                    text_size:self.size
+                    valign: "bottom"
+                    halign: "center"
+                Label:
+                    text: "(Hint: double click/tap!)"
+                    text_size:self.size
+                    valign: "top"
+                    halign: "center"
+                Label:
+                    text: str(root.selected_drive)
+                    id: selectedFolderLabel
+                    text_size:self.size
+                    valign: "top"
+                    halign: "center"
+                
+            GridLayout:
+                cols:1
+                id:folderSelect
+
+        GridLayout:
+            cols:2
+            AnchorLayout:
+                anchor_x:"left"
+                anchor_y:"bottom"
+                padding: [10,10,10,10]
+                Button:
+                    id:back
+                    text:"Back"
+                    text_size: self.size     
+                    halign: 'center'
+                    valign: 'middle'
+                    width:120
+                    height:30
+                    size_hint_x:None
+                    size_hint_y:None
+                    on_press: 
+                        root.manager.current="driveSelect"
+                        root.manager.transition.direction="right"
+            AnchorLayout:
+                anchor_x:"right"
+                anchor_y:"bottom"
+                padding: [10,10,10,10]
+                Button:
+                    id:play
+                    text:"Continue"
+                    text_size: self.size     
+                    halign: 'center'
+                    valign: 'middle'
+                    width:120
+                    height:30
+                    size_hint_x:None
+                    size_hint_y:None
+                    on_press: 
+                        root.manager.current="additionalOptions"
+                        root.manager.transition.direction="left"
+                        root.continue_pressed()
+
+<DisplayScreen>
+    BoxLayout:
+        orientation: 'vertical'
+
+<AdditionalOptionsScreen>
+    GridLayout:
+        cols:1
+        Label:
+            text: "Select Additional Options"
+            text_size:self.size
+            font_size:40
+            valign:"middle"
+            halign:"center"
+        GridLayout:
+            cols:2
+            Label:
+                text: "Photo Display Time (Seconds)"
+            AnchorLayout:
+                anchor_x: 'left'
+                TextInput:
+                    id: photoDisplayTime
+                    input_filter: 'float'
+                    multiline: False
+                    write_tab: False
+                    size_hint:(None, None)
+                    text: "5"
+                    height: 35
+                    width: 350
+            Label:
+                text: "Photo Display Order"
+            BoxLayout:
+                cols:2
+                Label: 
+                    text:"Random"
+                CheckBox:
+                    group:"display_order"
+                    id:random
+                    on_active: root.order_display_checkbox_click(self, self.active, "Random")
+                Label: 
+                    text:"Sequential"
+                CheckBox:
+                    group:"display_order"
+                    id:sequential
+                    on_active: root.order_display_checkbox_click(self, self.active, "Sequential")
+            Label:
+                text: "Sleep Mode"
+            BoxLayout:
+                cols:2
+                Label: 
+                    text:"On"
+                CheckBox:
+                    group:"sleep_mode"
+                    id:on
+                    on_active: root.sleep_mode_select(self, self.active, "On")
+                Label: 
+                    text:"Off"
+                CheckBox:
+                    group:"sleep_mode"
+                    id:off
+                    on_active: root.sleep_mode_select(self, self.active, "Off")
+            Label:
+                text: ""
+            GridLayout:
+                cols:2
+                Button:
+                    id:sleepOn0
+                    text:"Configure"
+                    text_size: self.size     
+                    halign: 'center'
+                    valign: 'middle'
+                    width:0
+                    opacity:0
+                    height:30
+                    size_hint_x:None
+                    size_hint_y:None
+                    on_press: 
+                        root.manager.current="sleepTimeSelect"
+                        root.manager.transition.direction="down"
+                BoxLayout:
+                    cols:1
+                    orientation:"vertical"
+                    Label:
+                        id:sleepOn1
+                        opacity:0
+                        text: "Sleep Start Time:"
+                    Label:
+                        id:sleepOn2
+                        opacity:0
+                        text: ""   
+                    Label:
+                        id:sleepOn3
+                        opacity:0
+                        text: "Sleep End Time:"   
+                    Label:
+                        id:sleepOn4
+                        opacity:0
+                        text: ""   
+        
+        
+        
+        
+
+        Label:
+            id:sleepNotConfiguredValidation
+            text: "Please select a sleep start and end time."
+            opacity: 0
+            text_size: self.size
+            size_hint_y: None
+            halign: "center"
+
+
+        GridLayout:
+            cols:2
+            AnchorLayout:
+                anchor_x:"left"
+                anchor_y:"bottom"
+                padding: [10,10,10,10]
+                Button:
+                    id:back
+                    text:"Back"
+                    text_size: self.size     
+                    halign: 'center'
+                    valign: 'middle'
+                    width:120
+                    height:30
+                    size_hint_x:None
+                    size_hint_y:None
+                    on_press: 
+                        root.manager.current="folderSelect"
+                        root.manager.transition.direction="right"
+            AnchorLayout:
+                anchor_x:"right"
+                anchor_y:"bottom"
+                padding: [10,10,10,10]
+                Button:
+                    id:play
+                    text:"Play"
+                    text_size: self.size     
+                    halign: 'center'
+                    valign: 'middle'
+                    width:120
+                    height:30
+                    size_hint_x:None
+                    size_hint_y:None
+                    on_press: 
+                        root.manager.transition.direction="left"
+                        root.on_play()
+
+<SleepTimeSelectScreen>
+    GridLayout:
+        cols:1
+        Label:
+            text: "Configure Sleep Mode"
+            text_size:self.size
+            font_size:40
+            valign:"middle"
+            halign:"center"
+        GridLayout:
+            cols:2
+            GridLayout:
+                cols:1
+                Label:
+                    text: "Sleep Start Time"
+                    text_size: self.size 
+                    valign: "bottom"
+                    halign: "center"
+                Label:
+                    text: "(00:00 - 24:59)"
+            GridLayout:
+                cols: 1
+                AnchorLayout:
+                    anchor_x: 'left'
+                    TextInput:
+                        id: sleepStartTime
+                        multiline: False
+                        write_tab: False
+                        size_hint:(None, None)
+                        height: 35
+                        width: 350
+                        text: "22:00"
+                Label:
+                    id:sleepStartValidationMessage
+                    text: "Incorrect time format. Please use an HH:MM format."
+                    text_size:self.size
+                    valign:"middle"
+                    halign:"left"
+                    size_hint_y:0
+                    opacity: 0
+            GridLayout:
+                cols:1
+                GridLayout:
+                    cols:1
+                    Label:
+                        text: "Sleep End Time"
+                        text_size: self.size 
+                        valign: "bottom"
+                        halign: "center"
+                    Label:
+                        text: "(00:00 - 24:59)"
+            GridLayout:
+                cols: 1
+                AnchorLayout:
+                    anchor_x: 'left'
+                    TextInput:
+                        id: sleepEndTime
+                        multiline: False
+                        write_tab: False
+                        size_hint:(None, None)
+                        height: 35
+                        width: 350
+                        text:"08:00"
+                Label:
+                    id:sleepEndValidationMessage
+                    text: "Incorrect time format. Please use an HH:MM format."
+                    text_size:self.size
+                    valign:"middle"
+                    halign:"left"
+                    size_hint_y:0
+                    opacity:0
+
+        GridLayout:
+            cols:2
+            AnchorLayout:
+                anchor_x:"left"
+                anchor_y:"bottom"
+                padding: [10,10,10,10]
+                Button:
+                    id:back
+                    text:"Back"
+                    text_size: self.size     
+                    halign: 'center'
+                    valign: 'middle'
+                    width:120
+                    height:30
+                    size_hint_x:None
+                    size_hint_y:None
+                    on_press: 
+                        root.manager.current="additionalOptions"
+                        root.manager.transition.direction="up"
+            AnchorLayout:
+                anchor_x:"right"
+                anchor_y:"bottom"
+                padding: [10,10,10,10]
+                Button:
+                    id:save
+                    text:"Save"
+                    text_size: self.size     
+                    halign: 'center'
+                    valign: 'middle'
+                    width:120
+                    height:30
+                    size_hint_x:None
+                    size_hint_y:None
+                    on_press: 
+                        root.manager.transition.direction="up"
+                        root.save_sleep_timer()
+            
