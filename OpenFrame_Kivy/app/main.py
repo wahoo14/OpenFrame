@@ -32,7 +32,8 @@ DONE -improve error handling (HIDDEN THUMB DRIVE FILES)
 
 class SplashScreen(Screen):
     """
-    Initial landing page, Screen[0], 1st in workflow
+    Initial landing page, Screen[0], 1st in workflow.
+    Handle full screen in the buildozer.spec file
     """
     # Window.fullscreen = 'auto'
     pass
