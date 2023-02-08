@@ -6,6 +6,7 @@ from kivy.uix.button import Button
 from kivy.clock import Clock
 from kivy.properties import StringProperty
 from kivy.uix.filechooser import FileChooserListView
+from kivy.metrics import dp
 import re
 import psutil
 import os
@@ -51,16 +52,17 @@ class DriveSelectScreen(Screen):
     def on_enter(self):
         #early setting of sleepmode being active. this is a hack that should be revisited
         self.manager.screens[6].ids.sleepModeActive = False
+        #NON PC VERSION
         #functionality to detect available drives for the user to pick from
         layout = self.ids.driveLayout
         if layout.children:
-            None
+             None
         else:
             for drive_meta in psutil.disk_partitions():
-                drive = drive_meta.device
-                drive_btn = Button(text=drive, on_press=self.change_screen)
-                drive_btn.drive_id = drive
-                layout.add_widget(drive_btn)
+                 drive = drive_meta.device
+                 drive_btn = Button(text=drive, on_press=self.change_screen)
+                 drive_btn.drive_id = drive
+                 layout.add_widget(drive_btn)
 
 class FolderSelectScreen(Screen):
     """
@@ -74,11 +76,12 @@ class FolderSelectScreen(Screen):
         Currently using backend parsing/trimming along with front end hints
         to guide user input.
         """
+        #NON PC VERSION
         self.selected_drive = self.manager.screens[3].ids.selected_drive
         self.manager.screens[1].ids.selected_fpath = []
         layout = self.ids.folderSelect
         layout.clear_widgets()
-        folderSelect = FileChooserListView(dirselect=True, path= self.selected_drive, on_touch_down= self.on_select)
+        folderSelect = FileChooserListView(dirselect=True, path= self.manager.screens[3].ids.selected_drive, on_touch_down= self.on_select)
         layout.add_widget(folderSelect)        
     
     def on_select(self, instance, touch):
@@ -92,8 +95,10 @@ class FolderSelectScreen(Screen):
         """
         Called on Continue button clicked.
         """
+        #NON PC VERSION
         if not self.manager.screens[1].ids.selected_fpath:
-            self.manager.screens[1].ids.selected_fpath.append(self.selected_drive)
+             self.manager.screens[1].ids.selected_fpath.append(self.selected_drive)
+        pass
              
 class AdditionalOptionsScreen(Screen):
     """
@@ -139,7 +144,7 @@ class AdditionalOptionsScreen(Screen):
         if value == True:
             if selected == "On":
                 self.ids.sleepOn0.opacity = 1
-                self.ids.sleepOn0.width = 120
+                self.ids.sleepOn0.width = self.ids.sleepOn0.texture_size[0] + dp(75)
                 self.ids.sleepOn1.opacity = 1
                 self.ids.sleepOn2.opacity = 1
                 self.ids.sleepOn3.opacity = 1

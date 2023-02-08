@@ -41,11 +41,11 @@ Screen:
                 Button:
                     id:about
                     text:"About"
-                    text_size: self.size     
+                    font_size: '15sp'     
                     halign: 'center'
                     valign: 'middle'
-                    width:120
-                    height:30
+                    width:self.texture_size[0] + dp(75)
+                    height:self.texture_size[1] + dp(15)
                     size_hint_x:None
                     size_hint_y:None
                     on_press: 
@@ -58,11 +58,11 @@ Screen:
                 Button:
                     id:continue
                     text:"Continue"
-                    text_size: self.size     
+                    font_size: '15sp'      
                     halign: 'center'
                     valign: 'middle'
-                    width:120
-                    height:30
+                    width:self.texture_size[0] + dp(75)
+                    height:self.texture_size[1] + dp(15)
                     size_hint_x:None
                     size_hint_y:None
                     on_press: 
@@ -92,11 +92,11 @@ Screen:
                 Button:
                     id:back
                     text:"Back"
-                    text_size: self.size     
+                    font_size: '15sp'      
                     halign: 'center'
                     valign: 'middle'
-                    width:120
-                    height:30
+                    width:self.texture_size[0] + dp(75)
+                    height:self.texture_size[1] + dp(15)
                     size_hint_x:None
                     size_hint_y:None
                     on_press: 
@@ -127,16 +127,19 @@ Screen:
                 Button:
                     id:driveBack
                     text:"Back"
-                    text_size: self.size     
+                    font_size: '15sp'      
                     halign: 'center'
                     valign: 'middle'
-                    width:120
-                    height:30
+                    width:self.texture_size[0] + dp(75)
+                    height:self.texture_size[1] + dp(15)
                     size_hint_x:None
                     size_hint_y:None
                     on_press: 
                         root.manager.current="splash"
                         root.manager.transition.direction="right"
+
+
+
 
 <FolderSelectScreen>
     GridLayout:
@@ -181,11 +184,11 @@ Screen:
                 Button:
                     id:back
                     text:"Back"
-                    text_size: self.size     
+                    font_size: '15sp'      
                     halign: 'center'
                     valign: 'middle'
-                    width:120
-                    height:30
+                    width:self.texture_size[0] + dp(75)
+                    height:self.texture_size[1] + dp(15)
                     size_hint_x:None
                     size_hint_y:None
                     on_press: 
@@ -198,11 +201,11 @@ Screen:
                 Button:
                     id:play
                     text:"Continue"
-                    text_size: self.size     
+                    font_size: '15sp'      
                     halign: 'center'
                     valign: 'middle'
-                    width:120
-                    height:30
+                    width:self.texture_size[0] + dp(75)
+                    height:self.texture_size[1] + dp(15)
                     size_hint_x:None
                     size_hint_y:None
                     on_press: 
@@ -236,8 +239,8 @@ Screen:
                     write_tab: False
                     size_hint:(None, None)
                     text: "5"
-                    height: 35
-                    width: 350
+                    height: dp(35)
+                    width: dp(350)
             Label:
                 text: "Photo Display Order"
             BoxLayout:
@@ -277,12 +280,12 @@ Screen:
                 Button:
                     id:sleepOn0
                     text:"Configure"
-                    text_size: self.size     
+                    font_size: '15sp'      
                     halign: 'center'
                     valign: 'middle'
                     width:0
                     opacity:0
-                    height:30
+                    height:self.texture_size[1] + dp(15)
                     size_hint_x:None
                     size_hint_y:None
                     on_press: 
@@ -308,10 +311,6 @@ Screen:
                         opacity:0
                         text: ""   
         
-        
-        
-        
-
         Label:
             id:sleepNotConfiguredValidation
             text: "Please select a sleep start and end time."
@@ -330,16 +329,19 @@ Screen:
                 Button:
                     id:back
                     text:"Back"
-                    text_size: self.size     
+                    font_size: '15sp'    
                     halign: 'center'
                     valign: 'middle'
-                    width:120
-                    height:30
+                    width:self.texture_size[0] + dp(75)
+                    height:self.texture_size[1] + dp(15)
                     size_hint_x:None
                     size_hint_y:None
                     on_press: 
                         root.manager.current="folderSelect"
                         root.manager.transition.direction="right"
+            
+            
+            
             AnchorLayout:
                 anchor_x:"right"
                 anchor_y:"bottom"
@@ -347,11 +349,11 @@ Screen:
                 Button:
                     id:play
                     text:"Play"
-                    text_size: self.size     
+                    font_size: '15sp'    
                     halign: 'center'
                     valign: 'middle'
-                    width:120
-                    height:30
+                    width:self.texture_size[0] + dp(75)
+                    height:self.texture_size[1] + dp(15)
                     size_hint_x:None
                     size_hint_y:None
                     on_press: 
@@ -387,8 +389,8 @@ Screen:
                         multiline: False
                         write_tab: False
                         size_hint:(None, None)
-                        height: 35
-                        width: 350
+                        height: dp(35)
+                        width: dp(350)
                         text: "22:00"
                 Label:
                     id:sleepStartValidationMessage
@@ -418,8 +420,8 @@ Screen:
                         multiline: False
                         write_tab: False
                         size_hint:(None, None)
-                        height: 35
-                        width: 350
+                        height: dp(35)
+                        width: dp(350)
                         text:"08:00"
                 Label:
                     id:sleepEndValidationMessage
@@ -439,11 +441,11 @@ Screen:
                 Button:
                     id:back
                     text:"Back"
-                    text_size: self.size     
+                    font_size: '15sp'     
                     halign: 'center'
                     valign: 'middle'
-                    width:120
-                    height:30
+                    width:self.texture_size[0] + dp(75)
+                    height:self.texture_size[1] + dp(15)
                     size_hint_x:None
                     size_hint_y:None
                     on_press: 
@@ -456,11 +458,11 @@ Screen:
                 Button:
                     id:save
                     text:"Save"
-                    text_size: self.size     
+                    font_size: '15sp'      
                     halign: 'center'
                     valign: 'middle'
-                    width:120
-                    height:30
+                    width:self.texture_size[0] + dp(75)
+                    height:self.texture_size[1] + dp(15)
                     size_hint_x:None
                     size_hint_y:None
                     on_press: 

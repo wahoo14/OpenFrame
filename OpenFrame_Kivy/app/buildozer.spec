@@ -37,7 +37,7 @@ version = 0.1
 
 # (list) Application requirements
 # comma separated e.g. requirements = sqlite3,kivy
-requirements = python3,certifi==2022.12.7,charset-normalizer==3.0.1,docutils==0.19,idna==3.4,Kivy==2.1.0,kivy-deps.angle==0.3.3,kivy-deps.glew==0.3.1,kivy-deps.sdl2==0.4.5,Kivy-Garden==0.1.5,psutil==5.9.4,Pygments==2.14.0,pypiwin32==223,pywin32==305,requests==2.28.2
+requirements = python3,certifi==2022.12.7,charset-normalizer==3.0.1,docutils==0.19,idna==3.4,Kivy==2.1.0,Kivy-Garden==0.1.5,Pygments==2.14.0,requests==2.28.2
 
 # (str) Custom source folders for requirements
 # Sets custom source for any requirements with recipes
@@ -74,7 +74,7 @@ osx.kivy_version = 1.9.1
 #
 
 # (bool) Indicate if the application should be fullscreen or not
-fullscreen = 0
+fullscreen = 1
 
 # (string) Presplash background color (for android toolchain)
 # Supported formats are: #RRGGBB #AARRGGBB or one of the following names:
