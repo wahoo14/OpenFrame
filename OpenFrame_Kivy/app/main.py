@@ -8,10 +8,17 @@ from kivy.properties import StringProperty
 from kivy.uix.filechooser import FileChooserListView
 from kivy.metrics import dp
 import re
-import psutil
+# import psutil
 import os
 import random
 import datetime
+#mobile specific permissions
+from kivy import platform
+if platform == "android":
+    from android.permissions import request_permissions, Permission
+    request_permissions([Permission.READ_EXTERNAL_STORAGE, Permission.WRITE_EXTERNAL_STORAGE])
+from android.storage import primary_external_storage_path
+
 
 """
 Feature Backlog
@@ -40,29 +47,31 @@ class SplashScreen(Screen):
     pass
 
 class DriveSelectScreen(Screen):
-    """
-    Screen[3], 2nd in workflow.  Used to select a drive from which to pull photos
-    """
+    pass
+#     """
+#     Screen[3], 2nd in workflow.  Used to select a drive from which to pull photos
+#     NOT USED IN MOBILE DEVICE CODE BASE
+#     """
 
-    def change_screen(self, instance):
-        self.manager.current = 'folderSelect'
-        self.manager.transition.direction = "left"
-        self.manager.screens[3].ids.selected_drive = instance.drive_id
+#     def change_screen(self, instance):
+#         self.manager.current = 'folderSelect'
+#         self.manager.transition.direction = "left"
+#         self.manager.screens[3].ids.selected_drive = instance.drive_id
 
-    def on_enter(self):
-        #early setting of sleepmode being active. this is a hack that should be revisited
-        self.manager.screens[6].ids.sleepModeActive = False
-        #NON PC VERSION
-        #functionality to detect available drives for the user to pick from
-        layout = self.ids.driveLayout
-        if layout.children:
-             None
-        else:
-            for drive_meta in psutil.disk_partitions():
-                 drive = drive_meta.device
-                 drive_btn = Button(text=drive, on_press=self.change_screen)
-                 drive_btn.drive_id = drive
-                 layout.add_widget(drive_btn)
+#     def on_enter(self):
+#         #early setting of sleepmode being active. this is a hack that should be revisited
+#         self.manager.screens[6].ids.sleepModeActive = False
+#         #NON PC VERSION
+#         #functionality to detect available drives for the user to pick from
+#         layout = self.ids.driveLayout
+#         if layout.children:
+#              None
+#         else:
+#             for drive_meta in psutil.disk_partitions():
+#                  drive = drive_meta.device
+#                  drive_btn = Button(text=drive, on_press=self.change_screen)
+#                  drive_btn.drive_id = drive
+#                  layout.add_widget(drive_btn)
 
 class FolderSelectScreen(Screen):
     """
@@ -77,11 +86,12 @@ class FolderSelectScreen(Screen):
         to guide user input.
         """
         #NON PC VERSION
-        self.selected_drive = self.manager.screens[3].ids.selected_drive
+        # self.selected_drive = self.manager.screens[3].ids.selected_drive
+        self.manager.screens[6].ids.sleepModeActive = False
         self.manager.screens[1].ids.selected_fpath = []
         layout = self.ids.folderSelect
         layout.clear_widgets()
-        folderSelect = FileChooserListView(dirselect=True, path= self.manager.screens[3].ids.selected_drive, on_touch_down= self.on_select)
+        folderSelect = FileChooserListView(dirselect=True, path= primary_external_storage_path(), on_touch_down= self.on_select)
         layout.add_widget(folderSelect)        
     
     def on_select(self, instance, touch):
@@ -343,7 +353,11 @@ class OpenFrame(App):
     """
     Parent Kivy app class
     """
-    pass
+    def on_start(self, **kwargs):
+        #mobile only function
+        if platform == "android":
+            from android.permissions import request_permissions, Permission
+            request_permissions([Permission.READ_EXTERNAL_STORAGE, Permission.WRITE_EXTERNAL_STORAGE])
 
 if __name__ == '__main__':
     OpenFrame().run()

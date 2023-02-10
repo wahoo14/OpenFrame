@@ -66,7 +66,7 @@ Screen:
                     size_hint_x:None
                     size_hint_y:None
                     on_press: 
-                        root.manager.current="driveSelect"
+                        root.manager.current="folderSelect"
                         root.manager.transition.direction="left"
 
 <AboutScreen>
@@ -116,8 +116,6 @@ Screen:
             cols:1
             id: driveLayout
             padding: [100,0]
-
-
         GridLayout:
             cols:2
             AnchorLayout:
@@ -137,9 +135,23 @@ Screen:
                     on_press: 
                         root.manager.current="splash"
                         root.manager.transition.direction="right"
-
-
-
+            AnchorLayout:
+                anchor_x:"right"
+                anchor_y:"bottom"
+                padding: [10,10,10,10]
+                Button:
+                    id:play
+                    text:"Continue"
+                    font_size: '15sp'      
+                    halign: 'center'
+                    valign: 'middle'
+                    width:self.texture_size[0] + dp(75)
+                    height:self.texture_size[1] + dp(15)
+                    size_hint_x:None
+                    size_hint_y:None
+                    on_press: 
+                        root.manager.current="folderSelect"
+                        root.manager.transition.direction="left"
 
 <FolderSelectScreen>
     GridLayout:
@@ -169,12 +181,10 @@ Screen:
                     id: selectedFolderLabel
                     text_size:self.size
                     valign: "top"
-                    halign: "center"
-                
+                    halign: "center" 
             GridLayout:
                 cols:1
                 id:folderSelect
-
         GridLayout:
             cols:2
             AnchorLayout:
@@ -192,7 +202,7 @@ Screen:
                     size_hint_x:None
                     size_hint_y:None
                     on_press: 
-                        root.manager.current="driveSelect"
+                        root.manager.current="splash"
                         root.manager.transition.direction="right"
             AnchorLayout:
                 anchor_x:"right"
@@ -309,8 +319,7 @@ Screen:
                     Label:
                         id:sleepOn4
                         opacity:0
-                        text: ""   
-        
+                        text: ""          
         Label:
             id:sleepNotConfiguredValidation
             text: "Please select a sleep start and end time."
@@ -318,8 +327,6 @@ Screen:
             text_size: self.size
             size_hint_y: None
             halign: "center"
-
-
         GridLayout:
             cols:2
             AnchorLayout:
@@ -338,10 +345,7 @@ Screen:
                     size_hint_y:None
                     on_press: 
                         root.manager.current="folderSelect"
-                        root.manager.transition.direction="right"
-            
-            
-            
+                        root.manager.transition.direction="right"           
             AnchorLayout:
                 anchor_x:"right"
                 anchor_y:"bottom"
