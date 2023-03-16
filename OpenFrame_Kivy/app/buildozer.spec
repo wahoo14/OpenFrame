@@ -1,7 +1,7 @@
 [app]
 
 # (str) Title of your application
-title = Open Frame
+title = OpenFrame
 
 # (str) Package name
 package.name = openFrame
@@ -29,7 +29,7 @@ source.include_exts = py,png,jpg,kv,atlas
 #source.exclude_patterns = license,images/*/*.jpg
 
 # (str) Application versioning (method 1)
-version = 0.1
+version = 1.0
 
 # (str) Application versioning (method 2)
 # version.regex = __version__ = ['"](.*)['"]
@@ -37,17 +37,17 @@ version = 0.1
 
 # (list) Application requirements
 # comma separated e.g. requirements = sqlite3,kivy
-requirements = python3,certifi==2022.12.7,charset-normalizer==3.0.1,docutils==0.19,idna==3.4,Kivy==2.1.0,Kivy-Garden==0.1.5,Pygments==2.14.0,requests==2.28.2
+requirements = python3,certifi==2022.12.7,charset-normalizer==3.0.1,docutils==0.19,idna==3.4,Kivy==2.1.0,Kivy-Garden==0.1.5,Pygments==2.14.0,requests==2.28.2,pyjnius==1.4.2,Cython==0.29.33
 
 # (str) Custom source folders for requirements
 # Sets custom source for any requirements with recipes
 # requirements.source.kivy = ../../kivy
 
 # (str) Presplash of the application
-#presplash.filename = %(source.dir)s/data/presplash.png
+#presplash.filename = %(source.dir)s/Splash_Title_Box.PNG
 
 # (str) Icon of the application
-#icon.filename = %(source.dir)s/data/icon.png
+#icon.filename = %(source.dir)s/Icon_Box.PNG
 
 # (list) Supported orientations
 # Valid options are: landscape, portrait, portrait-reverse or landscape-reverse
@@ -74,7 +74,7 @@ osx.kivy_version = 1.9.1
 #
 
 # (bool) Indicate if the application should be fullscreen or not
-fullscreen = 0
+fullscreen = 1
 
 # (string) Presplash background color (for android toolchain)
 # Supported formats are: #RRGGBB #AARRGGBB or one of the following names:

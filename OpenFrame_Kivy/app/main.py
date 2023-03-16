@@ -7,6 +7,7 @@ from kivy.clock import Clock
 from kivy.properties import StringProperty
 from kivy.uix.filechooser import FileChooserListView
 from kivy.metrics import dp
+from kivy.uix.label import Label
 import re
 # import psutil
 import os
@@ -17,7 +18,8 @@ from kivy import platform
 if platform == "android":
     from android.permissions import request_permissions, Permission
     request_permissions([Permission.READ_EXTERNAL_STORAGE, Permission.WRITE_EXTERNAL_STORAGE])
-from android.storage import primary_external_storage_path
+from android.storage import primary_external_storage_path, secondary_external_storage_path
+from jnius import autoclass
 
 
 """
@@ -91,7 +93,9 @@ class FolderSelectScreen(Screen):
         self.manager.screens[1].ids.selected_fpath = []
         layout = self.ids.folderSelect
         layout.clear_widgets()
-        folderSelect = FileChooserListView(dirselect=True, path= primary_external_storage_path(), on_touch_down= self.on_select)
+
+        internal_storage_path = primary_external_storage_path
+        folderSelect = FileChooserListView(dirselect=True, path= str(r"/storage/emulated/0"), on_touch_down= self.on_select)
         layout.add_widget(folderSelect)        
     
     def on_select(self, instance, touch):
