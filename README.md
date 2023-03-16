@@ -4,6 +4,8 @@ This is an app I wrote to turn an Android device into a digital picture frame.  
 
 When the app first launches, it will display a completely black screen.  This is a known bug.  To work around, hit the Options button on your Android device as depicted in the below screenshot to display all of the apps currently running on your device.  Reselect OpenFrame and the app will display appropriately.
 
+The Mobile_Version branch contains the OpenFrame_Kivy folder which is currently a 1.0 release with Android .apk file.
+
 Workaround:
 
 ![WorkAround](https://user-images.githubusercontent.com/39276115/225486568-293ec3e6-4913-411f-8eed-80c6ea663fc3.PNG)
